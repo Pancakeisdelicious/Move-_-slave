@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#DEE2E6">
+
+    <!-- 프로필 이미지 -->
+    <ImageView
+        android:id="@+id/profile_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/trophy"
+        android:scaleType="centerCrop" />
+
+
+    <!-- 이름 -->
+    <TextView
+        android:id="@+id/profile_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profile_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="김철수"
+        android:textColor="#000"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <!-- 이메일 -->
+    <TextView
+        android:id="@+id/profile_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profile_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:text="abcd@naver.com"
+        android:textColor="#888"
+        android:textSize="16sp" />
+
+    <!-- 성별 -->
+    <TextView
+        android:id="@+id/profile_sex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profile_name"
+        android:layout_gravity="center"
+        android:layout_marginTop="57dp"
+        android:background="#DEE2E6"
+        android:text="성별"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!-- 성별 입력-->
+    <TextView
+        android:id="@+id/profile_sex_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profile_name"
+        android:layout_gravity="center"
+        android:layout_marginTop="87dp"
+        android:background="#DEE2E6"
+        android:text="남"
+        android:textColor="#888888"
+        android:textSize="16sp" />
+    <!-- 지역 -->
+    <TextView
+        android:id="@+id/profile_region"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profile_name"
+        android:layout_gravity="center"
+        android:layout_marginTop="124dp"
+        android:background="#DEE2E6"
+        android:text="지역"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!-- 지역 입력-->
+    <TextView
+        android:id="@+id/profile_region_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profile_name"
+        android:layout_gravity="center"
+        android:layout_marginTop="155dp"
+        android:background="#DEE2E6"
+        android:text="서울특별시"
+        android:textColor="#888888"
+        android:textSize="16sp" />
+
+    <!-- 나이 -->
+    <TextView
+        android:id="@+id/profile_age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profile_name"
+        android:layout_gravity="center"
+        android:layout_marginTop="197dp"
+        android:background="#DEE2E6"
+        android:text="나이"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!-- 나이 입력 -->
+    <TextView
+        android:id="@+id/profile_age_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profile_name"
+        android:layout_gravity="center"
+        android:layout_marginTop="226dp"
+        android:background="#DEE2E6"
+        android:text="25"
+        android:textColor="#888888"
+        android:textSize="16sp" />
+
+    <!-- 총 걸음 수 -->
+    <TextView
+        android:id="@+id/profile_steps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profile_name"
+        android:layout_gravity="center"
+        android:layout_marginTop="265dp"
+        android:background="#DEE2E6"
+        android:text="총 걸음 수"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <!-- 총 걸음 수 입력-->
+    <TextView
+        android:id="@+id/profile_steps_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profile_name"
+        android:layout_gravity="center"
+        android:layout_marginTop="294dp"
+        android:background="#DEE2E6"
+        android:text="155000"
+        android:textColor="#888888"
+        android:textSize="16sp" />
+
+    <!-- 총 이동거리-->
+    <TextView
+        android:id="@+id/profile_distances"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profile_name"
+        android:layout_gravity="center"
+        android:layout_marginTop="336dp"
+        android:background="#DEE2E6"
+        android:text="총 이동 거리"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <!-- 총 이동거리 입력-->
+    <TextView
+        android:id="@+id/profile_distances_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profile_name"
+        android:layout_gravity="center"
+        android:layout_marginTop="365dp"
+        android:background="#DEE2E6"
+        android:text="80km"
+        android:textColor="#888888"
+        android:textSize="18dp" />
+
+    <!-- 버튼 -->
+    <Button
+        android:id="@+id/profile_button"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="690dp"
+        android:background="#B0BEC5"
+        android:gravity="center"
+        android:text="수정" />
+</RelativeLayout>
+
+
+

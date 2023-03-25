@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@color/white">
+
+    <!-- 일간, 주간, 월간-->
+    <Spinner
+        android:layout_width="109dp"
+        android:layout_height="37dp"
+        android:background="@drawable/spinner_ranking1" />
+
+     <!--오늘 하루 걸음 수-->
+    <TextView
+        android:id="@+id/steps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="57dp"
+        android:background="@color/white"
+        android:text="걸음 수"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!-- 오늘 하루 걸음 수 입력-->
+    <TextView
+        android:id="@+id/steps_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="87dp"
+        android:background="@color/white"
+        android:text="10000"
+        android:textColor="#888888"
+        android:textSize="16sp" />
+
+    <!-- 오늘 하루 이동 거리 -->
+    <TextView
+        android:id="@+id/day_distances"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="124dp"
+        android:background="@color/white"
+        android:text="오늘 하루 이동 거리"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <!-- 오늘 하루 이동 거리 입력 -->
+    <TextView
+        android:id="@+id/day_distances_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="155dp"
+        android:background="@color/white"
+        android:text="10km"
+        android:textColor="#888888"
+        android:textSize="16dp" />
+
+    <!-- 오늘 하루 소모 칼로리 -->
+    <TextView
+        android:id="@+id/day_calories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="197dp"
+        android:background="@color/white"
+        android:text="오늘 하루 소모 칼로리"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!-- 오늘 하루 소모 입력 -->
+    <TextView
+        android:id="@+id/day_calories_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/day_calories"
+        android:layout_gravity="center"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:text="100kcal"
+        android:textColor="#888888"
+        android:textSize="16dp" />
+</RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
