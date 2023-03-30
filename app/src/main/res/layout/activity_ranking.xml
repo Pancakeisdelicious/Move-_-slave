@@ -3,30 +3,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:background="#C6C6C6">
+    android:background="#DEE2E6">
 
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#DEE2E6"
+        android:orientation="vertical"
+        android:gravity="center">
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#DEE2E6"
-    android:orientation="vertical"
-    android:gravity="center">
-
-    <ImageView
-        android:id="@+id/ranking_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/trophy"
-        android:scaleType="centerCrop" />
+        <ImageView
+            android:id="@+id/ranking_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/trophy"
+            android:scaleType="centerCrop" />
 
     <!-- 일별, 주간, 월별-->
-    <TextView
+        <TextView
         android:id="@+id/ranking_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,5 +52,4 @@
         android:layout_height="match_parent"
         android:layout_weight="1" />
 </LinearLayout>
-
-
+</LinearLayout>
