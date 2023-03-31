@@ -40,8 +40,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.pedro.library.AutoPermissions;
 import com.pedro.library.AutoPermissionsListener;
 
-import org.w3c.dom.Text;
-
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -65,7 +63,6 @@ public class Activity_Main extends AppCompatActivity implements AutoPermissionsL
     Circle circle;
     CircleOptions circle1KM;
 
-
     // 현재 걸음 수
     SensorManager sensorManager;
     Sensor stepCountSensor;
@@ -79,6 +76,8 @@ public class Activity_Main extends AppCompatActivity implements AutoPermissionsL
     // 날짜 표시
     TextView current_date;
     public TextView txt;
+
+
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
@@ -114,13 +113,12 @@ public class Activity_Main extends AppCompatActivity implements AutoPermissionsL
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         stepCountSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
 
-        // 이동 거리 구하기
 
         // 현재 시간 구하기
         current_date = findViewById(R.id.current_date);
         long mNow = System.currentTimeMillis();
         Date mReDate = new Date(mNow);
-        SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String formatDate = mFormat.format(mReDate);
         current_date.setText("날짜 : " + formatDate);
 
@@ -170,7 +168,6 @@ public class Activity_Main extends AppCompatActivity implements AutoPermissionsL
 
         // 최초 지도 숨김
         mapFragment.getView().setVisibility(View.GONE);
-
         my_location_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -204,10 +201,9 @@ public class Activity_Main extends AppCompatActivity implements AutoPermissionsL
             if (event.values[0] == 1.0f) {
                 currentSteps++;
                 stepCountView.setText("걸음 수 : " + currentSteps);
-                distance.setText("이동 거리 : " + String.format("%.3f", distance));
             }
+          }
         }
-    }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
@@ -215,7 +211,7 @@ public class Activity_Main extends AppCompatActivity implements AutoPermissionsL
     }
     
     // 실질적 GPS 서비스
-    public String startLocationService() {
+    public void startLocationService() {
         try {
             Location location = null;
             long minTime = 0;        // 0초마다 갱신 - 바로바로갱신
@@ -250,7 +246,6 @@ public class Activity_Main extends AppCompatActivity implements AutoPermissionsL
                     value_text.setText(message);
                     showCurrentLocation(latitude, longitude);
                     Log.i("MyLocTest", "최근 위치1 호출");
-
                 }
 
                 //위치 요청하기
@@ -283,7 +278,6 @@ public class Activity_Main extends AppCompatActivity implements AutoPermissionsL
         } catch (SecurityException e) {
             e.printStackTrace();
         }
-        return null;
     }
 
     // 위치 확인되었을때 자동으로 호출됨 (일정시간 and 일정거리) 1초 주기로 경도 위도 바뀜
