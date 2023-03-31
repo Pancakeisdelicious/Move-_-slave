@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
@@ -41,6 +42,7 @@ import com.pedro.library.AutoPermissions;
 import com.pedro.library.AutoPermissionsListener;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -71,7 +73,8 @@ public class Activity_Main extends AppCompatActivity implements AutoPermissionsL
     int currentSteps = 0;
 
     // 이동 거리
-    TextView distance;
+    TextView distances;
+    int currentdistances = 0;
 
     // 날짜 표시
     TextView current_date;
@@ -100,7 +103,7 @@ public class Activity_Main extends AppCompatActivity implements AutoPermissionsL
         resetButton = findViewById(R.id.resetButton);
 
         // 이동 거리
-        distance = findViewById(R.id.distance);
+        distances = findViewById(R.id.distances);
 
         // GPS 활동 퍼미션 체크
         if (ContextCompat.checkSelfPermission(this,
@@ -122,6 +125,7 @@ public class Activity_Main extends AppCompatActivity implements AutoPermissionsL
         String formatDate = mFormat.format(mReDate);
         current_date.setText("날짜 : " + formatDate);
 
+
         // 디바이스에 걸음 센서의 존재 여부 체크
         if (stepCountSensor == null) {
             Toast.makeText(this, "No Step Sensor", Toast.LENGTH_SHORT).show();
@@ -132,7 +136,7 @@ public class Activity_Main extends AppCompatActivity implements AutoPermissionsL
             @Override
             public void onClick(View view) {
                 currentSteps = 0;
-                stepCountView.setText(String.valueOf(currentSteps));
+                stepCountView.setText("걸음 수 :  " + String.valueOf(currentSteps));
             }
         });
 
@@ -200,7 +204,9 @@ public class Activity_Main extends AppCompatActivity implements AutoPermissionsL
         if (event.sensor.getType() == Sensor.TYPE_STEP_DETECTOR) {
             if (event.values[0] == 1.0f) {
                 currentSteps++;
+                currentdistances++; // 이동거리 = 걸음 수 x 70cm(성인 남자 기준)
                 stepCountView.setText("걸음 수 : " + currentSteps);
+                distances.setText("이동 거리 : " + Math.round((currentSteps * 0.7 * 100) / 100.0) + "m");
             }
           }
         }
@@ -227,6 +233,7 @@ public class Activity_Main extends AppCompatActivity implements AutoPermissionsL
                     // geocoder 위도 경도 좌표를 주소로 변환
                     Geocoder geocoder = new Geocoder(this, Locale.getDefault());
                     List<Address> addresses;
+                    String txtaddress = null; // 주소 담을 변수
                     try {
                         addresses = geocoder.getFromLocation(
                                 latitude,
@@ -240,7 +247,9 @@ public class Activity_Main extends AppCompatActivity implements AutoPermissionsL
                             txt.setText("오류");
                         } else {
                             Log.d("찾은 주소", addresses.get(0).toString());
-                            txt.setText(addresses.get(0).getAddressLine(0));
+                            txt.setText(addresses.get(0).getAdminArea() + " " + // 도/시/동 까지
+                                    addresses.get(0).getLocality() + " " +
+                                    addresses.get(0).getThoroughfare());
                         }
                     }
                     value_text.setText(message);
