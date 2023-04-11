@@ -7,13 +7,14 @@
 
     <!-- Google Map -->
     <uses-permission android:name="wonpa.alwaysweb.com.myloctest.permission.MAPS_RECEIVE" />
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-
+    
+    <!-- 걸음 수 측정 -->
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION"/>
+    
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true"/>
@@ -42,12 +43,8 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity
-<<<<<<< HEAD
+      <activity
             android:name=".Activity_Main"
-=======
-            android:name=".Activity_Ranking"
->>>>>>> f5af6eb (2022.03.25(메인화면만 빼고))
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -59,10 +56,7 @@
         <activity android:name=".Activity_Signup2"/>
         <activity android:name=".Activity_Login"/>
         <activity android:name=".Activity_SignupDone"/>
-<<<<<<< HEAD
-=======
-        <activity android:name=".Activity_Main"/>
->>>>>>> f5af6eb (2022.03.25(메인화면만 빼고))
+        <activity android:name=".Activity_Ranking"/>
     </application>
 
 </manifest>
