@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -41,6 +42,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.pedro.library.AutoPermissions;
 import com.pedro.library.AutoPermissionsListener;
 
+
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -58,7 +60,7 @@ public class Activity_Main extends AppCompatActivity implements AutoPermissionsL
 
     SupportMapFragment mapFragment;
     GoogleMap map;
-    
+
     // GPS Marker표시
     Marker myMarker;
     MarkerOptions myLocationMarker;
@@ -74,7 +76,6 @@ public class Activity_Main extends AppCompatActivity implements AutoPermissionsL
 
     // 이동 거리
     TextView distances;
-    int currentdistances = 0;
 
     // 날짜 표시
     TextView current_date;
@@ -203,19 +204,21 @@ public class Activity_Main extends AppCompatActivity implements AutoPermissionsL
         // 걸음 센서 이벤트 발생시
         if (event.sensor.getType() == Sensor.TYPE_STEP_DETECTOR) {
             if (event.values[0] == 1.0f) {
-                currentSteps++;
-                currentdistances++; // 이동거리 = 걸음 수 x 70cm(성인 남자 기준)
-                stepCountView.setText("걸음 수 : " + currentSteps);
-                distances.setText("이동 거리 : " + Math.round((currentSteps * 0.7 * 100) / 100.0) + "m");
+                    currentSteps++;
+                    stepCountView.setText("걸음 수 : " + currentSteps);
+                    distances.setText("이동 거리 : " + Math.round((currentSteps * 0.7 )) + "m");
+                    Log.d("현재 걸음 수 ", String.valueOf(currentSteps));
+                    Log.d("이동 거리", String.valueOf(Math.round(currentSteps * 0.7)) + 'm');
+                }
             }
           }
-        }
+
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
-    
+
     // 실질적 GPS 서비스
     public void startLocationService() {
         try {
@@ -225,15 +228,14 @@ public class Activity_Main extends AppCompatActivity implements AutoPermissionsL
             if (manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                 location = manager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                 if (location != null) {
-                    double latitude = location.getLatitude();
-                    double longitude = location.getLongitude();
+                    double latitude = Double.parseDouble(String.format("%.7f",location.getLatitude()));  // 소숫점 7번째 자리가 1cm
+                    double longitude = Double.parseDouble(String.format("%.7f",location.getLongitude()));
                     String message = "위도 : " + latitude + "\n 경도 : " + longitude;
 
 
                     // geocoder 위도 경도 좌표를 주소로 변환
                     Geocoder geocoder = new Geocoder(this, Locale.getDefault());
                     List<Address> addresses;
-                    String txtaddress = null; // 주소 담을 변수
                     try {
                         addresses = geocoder.getFromLocation(
                                 latitude,
@@ -246,8 +248,8 @@ public class Activity_Main extends AppCompatActivity implements AutoPermissionsL
                         if (addresses.size() == 0) {
                             txt.setText("오류");
                         } else {
-                            Log.d("찾은 주소", addresses.get(0).toString());
-                            txt.setText(addresses.get(0).getAdminArea() + " " + // 도/시/동 까지
+                            Log.d("주소", addresses.get(0).toString());
+                            txt.setText(addresses.get(0).getAdminArea() + " " + //admin = 도, Locality = 시, thoroughfare = 동
                                     addresses.get(0).getLocality() + " " +
                                     addresses.get(0).getThoroughfare());
                         }
@@ -272,7 +274,6 @@ public class Activity_Main extends AppCompatActivity implements AutoPermissionsL
 
                     value_text.setText(message);
                     showCurrentLocation(latitude, longitude);
-
                     Log.i("MyLocTest", "최근 위치2 호출");
                 }
 
@@ -388,8 +389,6 @@ public class Activity_Main extends AppCompatActivity implements AutoPermissionsL
             circle1KM.center(curPoint);
             circle = map.addCircle(circle1KM);
         }
-
-
     }
 
     @Override
@@ -408,4 +407,5 @@ public class Activity_Main extends AppCompatActivity implements AutoPermissionsL
     public void onGranted(int requestCode, @NonNull String[] permissions) {
         Toast.makeText(getApplicationContext(), "permissions granted : " + permissions.length, Toast.LENGTH_SHORT).show();
     }
+
 }
